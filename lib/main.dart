@@ -25,15 +25,27 @@ class AppState extends StatelessWidget {
 }
 
 class MyApp extends StatelessWidget {
+  static final ValueNotifier<ThemeMode> themeNotifier =
+      ValueNotifier(ThemeMode.light);
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Películas',
-      initialRoute: AppRoutes.initialRoute,
-      routes: AppRoutes.getAppRoutes(),
-      onGenerateRoute: AppRoutes.onGenerateRoute,
-      theme: AppTheme.lightTheme,
+    return ValueListenableBuilder<ThemeMode>(
+      valueListenable: themeNotifier,
+      builder: (_, ThemeMode currentMode, __) {
+        return MaterialApp(
+          debugShowCheckedModeBanner: false,
+          title: 'Películas',
+          initialRoute: AppRoutes.initialRoute,
+          routes: AppRoutes.getAppRoutes(),
+          onGenerateRoute: AppRoutes.onGenerateRoute,
+          // theme: AppTheme.lightTheme,
+          // darkTheme: AppTheme.darkTheme,
+          theme: AppTheme.lightTheme,
+          darkTheme: AppTheme.darkTheme,
+          themeMode: currentMode,
+        );
+      },
     );
   }
 }
