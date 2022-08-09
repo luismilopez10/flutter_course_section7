@@ -55,7 +55,7 @@ class _CastCard extends StatelessWidget {
       child: Column(
         children: [
           ClipRRect(
-            borderRadius: BorderRadius.circular(20),
+            borderRadius: BorderRadius.circular(12),
             child: FadeInImage(
               placeholder: AssetImage('assets/no-image.jpg'),
               image: NetworkImage(cast.fullProfilePath),

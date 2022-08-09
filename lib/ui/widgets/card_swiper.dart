@@ -29,7 +29,7 @@ class CardSwiper extends StatelessWidget {
         itemCount: movies.length,
         layout: SwiperLayout.STACK,
         itemWidth: size.width * 0.6,
-        itemHeight: size.height * 0.45,
+        itemHeight: size.height * 0.48,
         itemBuilder: (BuildContext context, int index) {
           final movie = movies[index];
 

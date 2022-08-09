@@ -88,7 +88,7 @@ class _PosterAndTitle extends StatelessWidget {
         Hero(
           tag: movie.heroId!,
           child: ClipRRect(
-            borderRadius: BorderRadius.circular(20),
+            borderRadius: BorderRadius.circular(12),
             child: FadeInImage(
               placeholder: const AssetImage('assets/no-image.jpg'),
               image: NetworkImage(movie.fullPosterImg),

@@ -34,15 +34,10 @@ class _MovieSliderState extends State<MovieSlider> {
   }
 
   @override
-  void dispose() {
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      height: 260,
+      height: 275,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -63,8 +58,10 @@ class _MovieSliderState extends State<MovieSlider> {
               controller: scrollController,
               scrollDirection: Axis.horizontal,
               itemCount: widget.movies.length,
-              itemBuilder: (_, index) =>
-                  _MoviePoster(movie: widget.movies[index]),
+              itemBuilder: (_, index) => _MoviePoster(
+                  movie: widget.movies[index],
+                  heroId:
+                      '${this.widget.title}-${index}-${this.widget.movies[index].id}'),
             ),
           )
         ],
@@ -75,34 +72,38 @@ class _MovieSliderState extends State<MovieSlider> {
 
 class _MoviePoster extends StatelessWidget {
   final Movie movie;
+  final String heroId;
 
   const _MoviePoster({
     Key? key,
     required this.movie,
+    required this.heroId,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    movie.heroId = 'popular_movies_slider-${movie.id}';
+    movie.heroId = heroId;
 
     return Container(
       width: 130,
-      height: 190,
+      height: 200,
       margin: const EdgeInsets.symmetric(horizontal: 10),
       child: Column(
         children: [
           GestureDetector(
-            onTap: () =>
-                Navigator.pushNamed(context, 'details', arguments: movie),
+            onTap: () {
+              Navigator.pushNamed(context, 'details', arguments: movie);
+              print(movie.title);
+            },
             child: Hero(
               tag: movie.heroId!,
               child: ClipRRect(
-                borderRadius: BorderRadius.circular(20),
+                borderRadius: BorderRadius.circular(12),
                 child: FadeInImage(
                   placeholder: const AssetImage('assets/no-image.jpg'),
                   image: NetworkImage(movie.fullPosterImg),
                   width: 130,
-                  height: 190,
+                  height: 200,
                   fit: BoxFit.cover,
                 ),
               ),
