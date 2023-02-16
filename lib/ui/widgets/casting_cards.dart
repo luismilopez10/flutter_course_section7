@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_card_swipper/flutter_card_swiper.dart';
 
 import 'package:provider/provider.dart';
 import 'package:seccion7_fluttercourse/models/models.dart';
@@ -33,10 +34,57 @@ class CastingCards extends StatelessWidget {
           child: ListView.builder(
             itemCount: cast.length,
             scrollDirection: Axis.horizontal,
-            itemBuilder: (_, index) => _CastCard(cast: cast[index]),
+            itemBuilder: (_, index) {
+              return GestureDetector(                
+                onTap: () async {
+                  await showDialog(
+                    context: context, 
+                    builder: (_) {
+                      return _DialogImage(cast: cast, index: index);
+                    },
+                  );
+                },
+                child: _CastCard(cast: cast[index])
+              );
+            } 
           ),
         );
       },
+    );
+  }
+}
+
+class _DialogImage extends StatelessWidget {
+  final List<Cast> cast;
+  final index;
+
+  const _DialogImage({
+    required this.cast,
+    required this.index,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final screenSize = MediaQuery.of(context).size;
+
+    return Dialog(
+      child: Container(
+        color: Colors.black,
+        width: screenSize.width * 0.8,
+        height: screenSize.height * 0.8,
+        child: Swiper(
+          index: index,
+          itemCount: cast.length,
+          loop: false,
+          itemBuilder: (context, index) {
+            return FadeInImage(
+              fit: BoxFit.contain,
+              placeholder: const AssetImage('assets/no-image.jpg'),
+              image: NetworkImage(cast[index].fullProfilePath),
+            );
+          },
+        ),
+      ),
     );
   }
 }
