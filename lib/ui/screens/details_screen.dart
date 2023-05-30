@@ -85,14 +85,24 @@ class _PosterAndTitle extends StatelessWidget {
       margin: const EdgeInsets.only(top: 20),
       padding: const EdgeInsets.symmetric(horizontal: 20),
       child: Row(children: [
-        Hero(
-          tag: movie.heroId!,
-          child: ClipRRect(
-            borderRadius: BorderRadius.circular(12),
-            child: FadeInImage(
-              placeholder: const AssetImage('assets/no-image.jpg'),
-              image: NetworkImage(movie.fullPosterImg),
-              height: 150,
+        GestureDetector(
+          onTap: () async {
+            await showDialog(
+              context: context,
+              builder: (_) {
+                return ImageAsModal(imageUrls: [movie.fullPosterImg], index: 0);
+              },
+            );
+          },
+          child: Hero(
+            tag: movie.heroId!,
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(12),
+              child: FadeInImage(
+                placeholder: const AssetImage('assets/no-image.jpg'),
+                image: NetworkImage(movie.fullPosterImg),
+                height: 150,
+              ),
             ),
           ),
         ),
@@ -110,10 +120,10 @@ class _PosterAndTitle extends StatelessWidget {
                 overflow: TextOverflow.ellipsis,
                 maxLines: 2,
               ),
-              Text(
+              SelectableText(
                 movie.originalTitle,
                 style: textTheme.subtitle1,
-                overflow: TextOverflow.ellipsis,
+                // overflow: TextOverflow.ellipsis,
                 maxLines: 2,
               ),
               Row(

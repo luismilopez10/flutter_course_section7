@@ -35,16 +35,16 @@ class Movie {
     required this.voteCount,
   });
 
-  get fullPosterImg {
-    if (this.posterPath != null) {
-      return 'https://image.tmdb.org/t/p/w500${this.posterPath}';
+  String get fullPosterImg {
+    if (posterPath != null) {
+      return 'https://image.tmdb.org/t/p/w500$posterPath';
     }
     return 'https://i.stack.imgur.com/GNhxO.png';
   }
 
-  get fullBackdropPath {
-    if (this.backdropPath != null) {
-      return 'https://image.tmdb.org/t/p/w500${this.backdropPath}';
+  String get fullBackdropPath {
+    if (backdropPath != null) {
+      return 'https://image.tmdb.org/t/p/w500$backdropPath';
     }
     return 'https://i.stack.imgur.com/GNhxO.png';
   }
