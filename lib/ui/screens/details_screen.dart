@@ -114,12 +114,17 @@ class _PosterAndTitle extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
+              SelectableText(
                 movie.title,
                 style: textTheme.headline5,
-                overflow: TextOverflow.ellipsis,
                 maxLines: 2,
               ),
+              // Text(
+              //   movie.title,
+              //   style: textTheme.headline5,
+              //   overflow: TextOverflow.ellipsis,
+              //   maxLines: 2,
+              // ),
               SelectableText(
                 movie.originalTitle,
                 style: textTheme.subtitle1,
