@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_card_swipper/flutter_card_swiper.dart';
 
 import 'package:provider/provider.dart';
 import 'package:seccion7_fluttercourse/models/models.dart';
@@ -41,7 +40,11 @@ class CastingCards extends StatelessWidget {
                       await showDialog(
                         context: context,
                         builder: (_) {
-                          return ImageAsModal(imageUrls: cast.map((actor) => actor.fullProfilePath).toList(), index: index);
+                          return ImageAsModal(
+                              imageUrls: cast
+                                  .map((actor) => actor.fullProfilePath)
+                                  .toList(),
+                              index: index);
                         },
                       );
                     },

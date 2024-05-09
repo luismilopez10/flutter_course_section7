@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_card_swipper/flutter_card_swiper.dart';
-import 'package:seccion7_fluttercourse/models/models.dart';
 
 class ImageAsModal extends StatelessWidget {
   final List<String> imageUrls;
-  final index;
+  final int index;
 
   const ImageAsModal({
+    super.key,
     required this.imageUrls,
     required this.index,
   });
